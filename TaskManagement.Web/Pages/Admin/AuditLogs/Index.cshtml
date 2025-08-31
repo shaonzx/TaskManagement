@@ -1,0 +1,31 @@
+﻿@page
+@model TaskManagement.Web.Pages.Admin.AuditLogs.IndexModel
+@{
+    ViewData["Title"] = "Audit Logs";
+}
+
+<div class="container">
+    <h2>Audit Logs</h2>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Timestamp</th>
+            <th>Action</th>
+            <th>Details</th>
+            <th>User</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var log in Model.AuditLogs)
+        {
+            <tr>
+                <td>@log.Timestamp.ToString("g")</td>
+                <td>@log.Action</td>
+                <td>@log.Details</td>
+                <td>@log.User?.FirstName @log.User?.LastName</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
