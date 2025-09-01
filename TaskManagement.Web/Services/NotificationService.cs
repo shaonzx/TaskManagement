@@ -120,6 +120,10 @@ namespace TaskManagement.Web.Services
 
             await _unitOfWork.AuditLogs.AddAsync(auditLog);
             await _unitOfWork.CompleteAsync();
+
+
+            // Notify the specific user that their menu needs to be updated
+            await _hubContext.Clients.User(user.Id).SendAsync("SendMenuUpdate", newRole);
         }
     }
 }

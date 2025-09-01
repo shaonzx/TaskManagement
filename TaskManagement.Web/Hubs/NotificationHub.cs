@@ -72,5 +72,14 @@ namespace TaskManagement.Web.Hubs
         {
             await Groups.RemoveFromGroupAsync(Context.ConnectionId, $"project-{projectId}");
         }
+
+        // dynamic menu update
+        public async Task SendMenuUpdate(string userId)
+        {
+            if (_userConnections.TryGetValue(userId, out var connectionId))
+            {
+                await Clients.Client(connectionId).SendAsync("SendMenuUpdate");
+            }
+        }
     }
 }

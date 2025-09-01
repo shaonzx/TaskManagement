@@ -133,10 +133,11 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarContent">
+
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Manager") ))
+                        @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Manager")))
                         {
-                            <li class="nav-item">
+                            <li class="nav-item" data-required-roles="Admin,Manager">
                                 <a class="nav-link @(Context.Request.Path.StartsWithSegments("/Projects") ? "active" : "")"
                                    asp-area="" asp-page="/Projects/Index">
                                     <i class="bi bi-folder me-1"></i>Projects
@@ -145,7 +146,7 @@
                         }
                         @if (User.Identity.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Manager") || User.IsInRole("Member")))
                         {
-                            <li class="nav-item">
+                            <li class="nav-item" data-required-roles="Admin,Manager,Member">
                                 <a class="nav-link @(Context.Request.Path.StartsWithSegments("/Tasks") ? "active" : "")"
                                    asp-area="" asp-page="/Tasks/Index">
                                     <i class="bi bi-list-task me-1"></i>Tasks
@@ -154,13 +155,13 @@
                         }
                         @if (User.IsInRole("Admin"))
                         {
-                            <li class="nav-item">
+                            <li class="nav-item" data-required-roles="Admin">
                                 <a class="nav-link @(Context.Request.Path.StartsWithSegments("/Admin/Users") ? "active" : "")"
                                    asp-area="" asp-page="/Admin/Users/Index">
                                     <i class="bi bi-people me-1"></i>User Management
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" data-required-roles="Admin">
                                 <a class="nav-link @(Context.Request.Path.StartsWithSegments("/Admin/AuditLogs") ? "active" : "")"
                                    asp-area="" asp-page="/Admin/AuditLogs/Index">
                                     <i class="bi bi-clipboard-data me-1"></i>Audit Logs
@@ -168,6 +169,8 @@
                             </li>
                         }
                     </ul>
+
+
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
                             <span class="nav-link online-users-display">
@@ -175,7 +178,7 @@
                                 <span id="online-users-count">0 users online</span>
                             </span>
                         </li>
-                        <partial name="_LoginPartial" />
+                        <partial name="_LoginPartial"/>
                     </ul>
                 </div>
             </div>
