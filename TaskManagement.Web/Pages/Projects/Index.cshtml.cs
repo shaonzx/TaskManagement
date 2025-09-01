@@ -20,6 +20,11 @@ namespace TaskManagement.Web.Pages.Projects
         {
             await InitializeUserProperties();
 
+            if (IsMember)
+            {
+                return Forbid();
+            }
+
             if (IsAdmin)
             {
                 Projects = (await _unitOfWork.Projects.GetProjectsWithDetailsAsync()).ToList();

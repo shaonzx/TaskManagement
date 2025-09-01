@@ -106,7 +106,7 @@ namespace TaskManagement.Web.Services
         {
             // Notify the user whose role was changed
             await _hubContext.Clients.User(user.Id).SendAsync("ReceiveNotification",
-                $"Your role has been changed from {oldRole} to {newRole}. Please refresh the page for changes to take effect.");
+                $"Your role has been changed from {oldRole} to {newRole}! The access has been reset accordingly.");
 
             // Log the role change
             var details = $"{user.FirstName} {user.LastName}'s role changed from {oldRole} to {newRole} by {changedById}";

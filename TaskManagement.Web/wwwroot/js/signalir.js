@@ -148,6 +148,8 @@ function updateMenuBasedOnRole(newRole) {
     console.log('Menu updated for role:', newRole);
 }
 
+
+
 // Start the connection when page loads
 document.addEventListener('DOMContentLoaded', function () {
     // Request notification permission
